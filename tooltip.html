@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tooltip</title>
+ <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+    <div class="wrapper-card">
+        <div class="card ">
+            <img src="images/img_01.jpg" alt="" width="100%">
+            <h2 class="title">Title#1</h2>
+            <p class="text-card">Lorem ipsum dolor Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores,
+                illum. sit amet, consectetur adipisicing elit. Aspernatur ex, expedita id illum in ipsa iste laborum
+                nobis nulla possimus tempora totam veniam? Ducimus.</p>
+            <button class="btn">Go To Url</button>
+        </div>
+
+        <div class="card">
+            <img src="images/img_02.jpg" alt="" width="100%">
+            <h2 class="title">Title#1</h2>
+            <p class="text-card"> Aspernatur ex, expedita id illum in ipsa iste laborum nobis nulla possimus tempora
+                totam veniam? Ducimus harum, libero quam sed sint totam?</p>
+            <button class="btn">Go To Url</button>
+        </div>
+
+        <div class="card">
+            <img src="images/img_03.jpeg" alt="" width="100%">
+            <h2 class="title">Title#1</h2>
+            <p class="text-card">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur ex, expedita id
+                illum in ipsa iste laborum nobis nulla possimus tempora totam veniam? Ducimus harum, libero quam sed
+                sint totam?</p>
+            <button class="btn">Go To Url</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const tooltip = document.createElement("div");
+            tooltip.className = "tooltip";
+            tooltip.style.display = "none";
+            document.body.appendChild(tooltip);
+
+            document.querySelectorAll(".text-card").forEach((el) => {
+                el.addEventListener("mouseenter", (e) => {
+                    const rect = e.target.getBoundingClientRect();
+                    tooltip.textContent = e.target.textContent;
+                    tooltip.style.display = "block";
+                    tooltip.style.top = `${rect.bottom + window.scrollY + 5}px`;
+                    tooltip.style.left = `${rect.left + window.scrollX}px`;
+                });
+
+                document.body.addEventListener("mouseleave", () => {
+                    tooltip.style.display = "none"
+                })
+            });
+        });
+
+    </script>
+</body>
+</html>
